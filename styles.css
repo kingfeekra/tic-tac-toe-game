@@ -64,6 +64,13 @@ body {
 
 header {
     background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 3rem;
 }
 
 #container {
@@ -77,7 +84,7 @@ header {
 }
 
 #boardDiv {
-
+    margin-bottom: 50px;
 }
 
 .boardRow {
@@ -102,5 +109,21 @@ header {
 }
 
 .whoseTurn {
-    margin-bottom: 50px
+    margin-bottom: 50px;
+    font-size: 1.8rem;
 }
+
+.whoseTurnFlash {
+    animation: blinker 1s step-start infinite;
+}
+
+
+#resetButton {
+
+}
+
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }

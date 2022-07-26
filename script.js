@@ -20,7 +20,7 @@ const gameBoard = (() => {
         }
         for(let i = 0; i < squareStatus.length; i++) {
             const getSquares = document.querySelectorAll(".square");
-            getSquares[i].setAttribute("data-square-number", i)
+            getSquares[i].setAttribute("data-square-number", i);
             getSquares[i].textContent = squareStatus[i];
         }
 
@@ -40,8 +40,36 @@ const game = (() => {
 
     const displayPlayer = function(player) {
         whoseTurn.textContent = `${player}'s Turn`;
+        whoseTurn.style.cssText = "color:black;"
     }
 
+    const winner = function() {
+        const getSquareNumbers = document.querySelectorAll("[data-square-number]");
+        if (getSquareNumbers[0].textContent == "X" && getSquareNumbers[1].textContent == "X" && getSquareNumbers[2].textContent == "X" ||
+            getSquareNumbers[3].textContent == "X" && getSquareNumbers[4].textContent == "X" && getSquareNumbers[5].textContent == "X" ||
+            getSquareNumbers[6].textContent == "X" && getSquareNumbers[7].textContent == "X" && getSquareNumbers[8].textContent == "X" ||
+            getSquareNumbers[0].textContent == "X" && getSquareNumbers[3].textContent == "X" && getSquareNumbers[6].textContent == "X" ||
+            getSquareNumbers[1].textContent == "X" && getSquareNumbers[4].textContent == "X" && getSquareNumbers[7].textContent == "X" ||
+            getSquareNumbers[2].textContent == "X" && getSquareNumbers[5].textContent == "X" && getSquareNumbers[8].textContent == "X" ||
+            getSquareNumbers[0].textContent == "X" && getSquareNumbers[4].textContent == "X" && getSquareNumbers[8].textContent == "X" ||
+            getSquareNumbers[2].textContent == "X" && getSquareNumbers[4].textContent == "X" && getSquareNumbers[6].textContent == "X") {
+                whoseTurn.textContent = "Player 1 Wins!!!";
+                whoseTurn.style.cssText = "color:red;";
+        }
+        else if(getSquareNumbers[0].textContent == "O" && getSquareNumbers[1].textContent == "O" && getSquareNumbers[2].textContent == "O" ||
+                getSquareNumbers[3].textContent == "O" && getSquareNumbers[4].textContent == "O" && getSquareNumbers[5].textContent == "O" ||
+                getSquareNumbers[6].textContent == "O" && getSquareNumbers[7].textContent == "O" && getSquareNumbers[8].textContent == "O" ||
+                getSquareNumbers[0].textContent == "O" && getSquareNumbers[3].textContent == "O" && getSquareNumbers[6].textContent == "O" ||
+                getSquareNumbers[1].textContent == "O" && getSquareNumbers[4].textContent == "O" && getSquareNumbers[7].textContent == "O" ||
+                getSquareNumbers[2].textContent == "O" && getSquareNumbers[5].textContent == "O" && getSquareNumbers[8].textContent == "O" ||
+                getSquareNumbers[0].textContent == "O" && getSquareNumbers[4].textContent == "O" && getSquareNumbers[8].textContent == "O" ||
+                getSquareNumbers[2].textContent == "O" && getSquareNumbers[4].textContent == "O" && getSquareNumbers[6].textContent == "O") {
+                    whoseTurn.textContent = "Player 2 Wins!!!";
+                    whoseTurn.style.cssText = "color:red;";
+
+        }
+    }
+    
     const playerTurn = function() {
         const getSquares = document.querySelectorAll(".square");
         for(let i = 0; i < getSquares.length; i++) {
@@ -58,6 +86,7 @@ const game = (() => {
                     getSquares[i].textContent = "O";
                     whoseTurn.textContent = `${player1.name}'s Turn`;
                 }
+                winner();
             })
         }
     }
@@ -71,3 +100,16 @@ const game = (() => {
 gameBoard.createBoard();
 game.displayPlayer(player1.name);
 game.playerTurn();
+
+const resetButton = document.querySelector("#resetButton");
+resetButton.addEventListener("click", () => {
+    const resetBoard = document.querySelectorAll(".boardRow");
+    for(let i = 0; i < resetBoard.length; i++)
+    resetBoard[i].textContent = "";
+    gameBoard.createBoard();
+    game.displayPlayer(player1.name);
+    game.playerTurn();
+})
+
+
+
