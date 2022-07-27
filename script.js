@@ -66,8 +66,13 @@ const game = (() => {
                 getSquareNumbers[2].textContent == "O" && getSquareNumbers[4].textContent == "O" && getSquareNumbers[6].textContent == "O") {
                     whoseTurn.textContent = "Player 2 Wins!!!";
                     whoseTurn.style.cssText = "color:red;";
-
         }
+        else if(getSquareNumbers[0].textContent !== "" && getSquareNumbers[1].textContent !== "" && getSquareNumbers[2].textContent !== "" &&
+                getSquareNumbers[3].textContent !== "" && getSquareNumbers[4].textContent !== "" && getSquareNumbers[5].textContent !== "" &&
+                getSquareNumbers[6].textContent !== "" && getSquareNumbers[7].textContent !== "" && getSquareNumbers[8].textContent !== "") {
+                    whoseTurn.textContent = "Draw!!!";
+                    whoseTurn.style.cssText = "color:red;";
+                }
     }
     
     const playerTurn = function() {
